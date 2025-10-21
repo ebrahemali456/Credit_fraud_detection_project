@@ -4,16 +4,13 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import precision_recall_curve, roc_curve, auc, confusion_matrix
 
-# إعداد التنسيقات العامة
 sns.set(style="whitegrid", font_scale=1.1)
 plt.rcParams["axes.spines.top"] = False
 plt.rcParams["axes.spines.right"] = False
 
-# المسارات
 model_path = "/home/ebrahem-ali/PycharmProjects/Credit_fraud_detection_project/model_xgb_best.pkl"
 data_path = "../split/test.csv"
 
-# تحميل النموذج
 with open(model_path, "rb") as f:
     model_info = pickle.load(f)
 
@@ -26,25 +23,20 @@ else:
 
 print(f"✅ Model loaded (threshold = {threshold})")
 
-# تحميل البيانات
 data = pd.read_csv(data_path)
 X = data.drop(columns=["Class"])
 y_true = data["Class"]
 
-# التنبؤ
 y_prob = model.predict_proba(X)[:, 1]
 y_pred = (y_prob >= threshold).astype(int)
 
-# حساب المنحنيات
 precision, recall, _ = precision_recall_curve(y_true, y_prob)
 pr_auc = auc(recall, precision)
 
 fpr, tpr, _ = roc_curve(y_true, y_prob)
 roc_auc = auc(fpr, tpr)
 
-# ==========================================================
-# 1️⃣ رسم Precision–Recall و ROC في شكل موحد
-# ==========================================================
+
 fig, axes = plt.subplots(1, 2, figsize=(13, 5))
 
 # Precision–Recall
@@ -66,9 +58,7 @@ axes[1].grid(True, linestyle='--', alpha=0.6)
 plt.tight_layout()
 plt.show()
 
-# ==========================================================
-# 2️⃣ مصفوفة الالتباس (Confusion Matrix)
-# ==========================================================
+# Confusion Matrix
 cm = confusion_matrix(y_true, y_pred)
 plt.figure(figsize=(4.5, 4))
 sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False)
@@ -78,9 +68,7 @@ plt.ylabel("True Label")
 plt.tight_layout()
 plt.show()
 
-# ==========================================================
-# 3️⃣ توزيع الاحتمالات (Histogram)
-# ==========================================================
+#Histogram
 plt.figure(figsize=(8, 5))
 sns.histplot(y_prob[y_true == 0], color='green', label='Class 0', kde=True, bins=40, alpha=0.6)
 sns.histplot(y_prob[y_true == 1], color='red', label='Class 1', kde=True, bins=40, alpha=0.6)
@@ -92,9 +80,7 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
-# ==========================================================
-# 4️⃣ أهم 15 خاصية (Feature Importances)
-# ==========================================================
+# Feature Importances
 if hasattr(model, "feature_importances_"):
     importances = pd.Series(model.feature_importances_, index=X.columns)
     top_features = importances.sort_values(ascending=False).head(15)
