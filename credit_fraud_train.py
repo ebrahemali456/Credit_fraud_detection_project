@@ -59,7 +59,7 @@ def train_voting_model(log_model, rf_model, X_train, y_train):
 # ======================================================
 def train_xgboost(X_train, y_train, X_val, y_val,
                   max_depth=8, n_estimators=400, learning_rate=0.05):
-    print("⚡ Training XGBoost ...")
+    print(" Training XGBoost ...")
     model = XGBClassifier(
         n_estimators=n_estimators,
         max_depth=max_depth,
@@ -130,9 +130,9 @@ def main(args):
     # ====================
     # Evaluation
     # ====================
-    print("\n📊 Evaluating model ...")
+    print("\n Evaluating model ...")
     best_threshold, metrics = find_best_threshold(y_val, y_prob)
-    print(f"\n✅ Best Threshold: {best_threshold:.3f}")
+    print(f"\n Best Threshold: {best_threshold:.3f}")
     print(metrics)
 
     # ====================
@@ -141,7 +141,7 @@ def main(args):
     with open(args.save_path, "wb") as f:
         pickle.dump({"model": model, "best_threshold": best_threshold}, f)
 
-    print(f"\n💾 Model saved successfully to: {args.save_path}")
+    print(f"\n Model saved successfully to: {args.save_path}")
 
 
 # ======================================================
