@@ -1,12 +1,12 @@
 # Credit Card Fraud Detection (Imbalanced Classification)
 
-## 📌 Project Overview
+## Project Overview
 This project focuses on detecting fraudulent credit card transactions using machine learning techniques on a highly imbalanced dataset (fraud rate ≈ 0.17%).  
 The main goal is to maximize fraud detection performance while maintaining a strong balance between **precision** and **recall**, with particular emphasis on the **F1-score**.
 
 ---
 
-## 📊 Dataset
+##Dataset
 - **Source:** Credit Card Fraud Detection Dataset (Anonymized Transactions)
 - **Total Samples:** 284,807
 - **Fraud Cases:** 492 (~0.17%)
@@ -30,7 +30,7 @@ The main goal is to maximize fraud detection performance while maintaining a str
 
 ---
 
-## 🧹 Data Preprocessing
+##  Data Preprocessing
 - Removed duplicates and handled missing values
 - Feature scaling using **StandardScaler**
 - Addressed class imbalance using:
@@ -41,7 +41,7 @@ The main goal is to maximize fraud detection performance while maintaining a str
 
 ---
 
-## 🤖 Model Training
+##  Model Training
 - **Algorithm:** XGBoost Classifier  
 - **Why XGBoost?**
   - Handles imbalanced data effectively
@@ -58,7 +58,7 @@ The main goal is to maximize fraud detection performance while maintaining a str
 
 ---
 
-## 📈 Model Performance
+## Model Performance
 
 ### Training Results
 | Metric    | Value  |
@@ -86,7 +86,7 @@ The main goal is to maximize fraud detection performance while maintaining a str
 
 ---
 
-## 📉 Visual Analysis
+## Visual Analysis
 The following visualizations were used to analyze model performance:
 - Precision–Recall Curve
 - ROC Curve
@@ -101,13 +101,13 @@ The following visualizations were used to analyze model performance:
 
 ---
 
-## 🧠 Conclusion
+##  Conclusion
 The XGBoost model achieved strong generalization on unseen data with an **F1-score of 0.87** and **Recall of 0.88** on the test set.  
 Its robustness in handling severe class imbalance makes it well-suited for real-world fraud detection systems.
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 - **Programming Language:** Python 3.12
 - **Libraries:**  
   - XGBoost  
@@ -119,7 +119,7 @@ Its robustness in handling severe class imbalance makes it well-suited for real-
 
 ---
 
-## 🚀 How to Run the Project
+## How to Run the Project
 ```bash
 git clone https://github.com/your-username/credit-card-fraud-detection.git
 cd credit-card-fraud-detection
